@@ -43,7 +43,9 @@ Can Test The APIs using PostMan:
 The endpoints are:
 APIs : 1. '/insertUser': This API takes parameter family_id,universe_id and power as parameter and inserts the data in USER table.
 Example body in the post request: {"family_id": 1,"universe_id":1,"power": 4}
+
 2. '/listFamily': This API list the families in a universe.Expects a universe ID. Returns a dictionary/object with family_id mapped to data of all users with that family id.
+
 3. '/checkBalanced': This API Checks if families are balanced (have same power)
  Expects nothing. Returns family_id mapped to True/False depending if that
  family is balanced or not.
