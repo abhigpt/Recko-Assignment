@@ -6,26 +6,6 @@ NOTE: You can find the small dump/seed to test the APIs.The dump file name is re
 
 Table structure:
 USER -> id, family_id, universe_id, power.
-USER:(sample table)
-+----+-----------+-------------+-------+
-| id | family_id | universe_id | power |
-+----+-----------+-------------+-------+
-|  1 | 1         | 1           |     4 |
-|  2 | 2         | 3           |     5 |
-|  3 | 2         | 1           |     6 |
-|  4 | 2         | 1           |     7 |
-|  5 | 3         | 1           |     6 |
-+----+-----------+-------------+-------+
-
-Schema For The User Table:
-+-------------+--------------+------+-----+---------+----------------+
-| Field       | Type         | Null | Key | Default | Extra          |
-+-------------+--------------+------+-----+---------+----------------+
-| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
-| family_id   | varchar(255) | YES  |     | NULL    |                |
-| universe_id | varchar(255) | YES  |     | NULL    |                |
-| power       | int(11)      | NO   |     | NULL    |                |
-+-------------+--------------+------+-----+---------+----------------+
 
 APIs:
 
