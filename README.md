@@ -1,8 +1,9 @@
 # Recko-Assignment
 APIs for the Assignment Using Node and MySql
 
-Prerequisites: You will need to install mysql and nodejs.The assignment will run on localhost server port 3000.
+Prerequisites: You will need to install mysql and nodejs.The assignment will run on localhost server port 3000.Type node app.js to run.
 NOTE: You can find the small dump/seed to test the APIs.The dump file name is reckodump.sql(its inside the mysql-node folder of this assignment).
+
 
 Table structure:
 USER -> id, family_id, universe_id, power.
