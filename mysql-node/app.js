@@ -173,6 +173,48 @@ app.get('/checkBalanced', function(req,res){
   });
 
 });
+//This API balances the power of a particular family in all the universe i.e. it makes the power equal in all universe for a given family_id.
+//This API expects a family_id as input and after the API call it updates the sql table user with equal power(averagePower) in all universe for the given family_id.
+//Algorithm: 1. Fetch all the data for the requested family_id.
+//           2. Calculate averagePower for the family across the universe.
+//           3. Check if equal power is there for the given family id across each universe. If the power is not equal then update the user table(power coloumn) with the average value calculated.
+//           4. can verify if the value is updated by using Select * from user;
+app.post('/balanceFamily',function(req,res){
+  let requestedFamilyId = req.body.family_id;
+  let sql = 'SELECT * FROM user WHERE family_id = ?';
+  let query = db.query(sql,requestedFamilyId,function(err,result){
+    if(err){
+      console.log("there is some error in balancing user family",err);
+      throw err;
+    }
+    else{
+      var valueArr = result.map(function(item){ return item.power });
+      let sumPower = 0;
+      for(let i = 0; i < valueArr.length; i++){
+        sumPower = sumPower+parseInt(valueArr[i]);
+      }
+
+      var averagePower = sumPower/valueArr.length;
+      let isBalancedFamily = true;
+      for(let i = 0; i < valueArr.length-1; i++){
+        if(valueArr[i]!== valueArr[i+1]){
+          isBalancedFamily = false;
+          break;
+        }
+      }
+      if(isBalancedFamily === false){
+        let sql = `UPDATE user SET power = '${averagePower}' WHERE family_id = '${requestedFamilyId}'`;
+        console.log("the query is ",sql);
+        db.query(sql, function (err, response) {
+          if (err) throw err;
+          console.log("balanced the family with the given id",response);
+        });
+      }
+      res.send("The given family has now same power in all the universe");
+    }
+  });
+
+});
 
 app.listen('3000',() => {
   console.log("server started and running on port 3000");
